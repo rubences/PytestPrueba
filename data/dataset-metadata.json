@@ -1,0 +1,147 @@
+{
+  "id": "ioexception/medium-daily-digests",
+  "title": "Medium Daily Digests",
+  "subtitle": "I subscribed to the Medium Daily Digests so you don't have to",
+  "description": "## Background (or why did I do this)\n\nI have been trying to create a dataset related to Medium posts, despite there [being](https://www.kaggle.com/harrisonjansma/medium-stories) some [already](https://www.kaggle.com/hsankesara/medium-articles/kernels) out there. However, it seems that they are focused on certain topics, or just too small; I wanted my dataset to be something different but still related to Medium.\n\nAs for the data, I am certainly not sure about whether the dataset will be helpful to anyone, but I hope the way I built it with Python will be useful for anyone with more critical data out there.\n\nPS: Here is an explanation on how I achieved the automatisation of this dataset construction: [Automated dataset generation with Python](https://dev.to/fferegrino/how-to-automate-dataset-creation-with-python-171a)\n\n## Data source and collection\n\nSo if I wanted my dataset to be unique and different, I had to do something extra. At first, I thought of massively scraping posts from Medium; the problem is that they do not provide an easy to crawl, easy to scrape website\\u2026 then I thought about that *\"Medium Daily Digest\"* that I get every day, in it, Medium sends me stories that \"I may be interested in\"; Going back to when I subscribed to it I remember having to choose my interests among several topics.\n\nWith that in mind I set out to create 20 different email accounts (in reality they are aliases to a single account) and then use each one of them to subscribe to this infamous *\"Medium Daily Digest\"*, each account associated with five different (but somehow related as judged by me) topics. And ever since then I have been receiving 20 emails, every single day with titles, subtitles images and juicy urls.\n\nEvery now and then I log in to those accounts, open a few emails to prevent said accounts to be trimmed from Medium's syndication because [they know when you are not opening their emails](https://www.theverge.com/2019/7/3/20681508/tracking-pixel-email-spying-superhuman-web-beacon-open-tracking-read-receipts-location) but nothing major. It is also expected that the topics they offer may change over time, and at some point the interest of some accounts may chang,  then I'll have to log into Medium and do it myself manually, but for the most part the data collection runs on its own.",
+  "keywords": [
+      "web sites",
+      "email and messaging",
+      "blogging resources and services"
+  ],
+  "licenses": [
+    {
+      "name": "CC-BY-SA-4.0"
+    }
+  ],
+  "resources": [
+    {
+      "path": "accounts.csv",
+      "description": "Accounts and the topics I subscribed to",
+      "schema": {
+        "fields": [
+          {
+              "name": "account",
+              "description": null,
+              "type": "string"
+          },
+          {
+              "name": "topic1",
+              "description": null,
+              "type": "string"
+          },
+          {
+              "name": "topic2",
+              "description": null,
+              "type": "string"
+          },
+          {
+              "name": "topic3",
+              "description": null,
+              "type": "string"
+          },
+          {
+              "name": "topic4",
+              "description": null,
+              "type": "string"
+          },
+          {
+              "name": "topic5",
+              "description": null,
+              "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "path": "mails.csv",
+      "description": "All the mails I have received so far",
+      "schema": {
+        "fields": [
+          {
+              "name": "id",
+              "description": "a unique identifier of the email",
+              "type": "string"
+          },
+          {
+              "name": "date",
+              "description": "the datetime when the email was received",
+              "type": "datetime"
+          },
+          {
+              "name": "to",
+              "description": "a hash of the email account this email was delivered to",
+              "type": "string"
+          },
+          {
+              "name": "from",
+              "description": "the email account used to send the email (it is always the same)",
+              "type": "string"
+          },
+          {
+              "name": "subject",
+              "description": "the subject of the email",
+              "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "path": "articles_mails.csv",
+      "description": "All the articles I have received so far",
+      "schema": {
+        "fields": [
+          {
+              "name": "mail_id",
+              "description": "a unique identifier of the email this article came from, corresponds to one of id in the mails.csv file",
+              "type": "string"
+          },
+          {
+              "name": "post_url",
+              "description": "the Medium url of the article",
+              "type": "string"
+          },
+          {
+              "name": "post_title",
+              "description": "the title of the article",
+              "type": "string"
+          },
+          {
+              "name": "post_subtitle",
+              "description": "the subtitle of the article",
+              "type": "string"
+          },
+          {
+              "name": "section_title",
+              "description": "the title of the section the post was listed under",
+              "type": "string"
+          },
+          {
+              "name": "members_only",
+              "description": "a boolean flag that specifies whether the article is for members of Medium",
+              "type": "boolean"
+          },
+          {
+              "name": "author_name",
+              "description": "name of the article's author",
+              "type": "string"
+          },
+          {
+              "name": "author_handle",
+              "description": "handle of the article's author",
+              "type": "string"
+          },
+          {
+              "name": "site_name",
+              "description": "if the article was published under a site, this contains the name of such site",
+              "type": "string"
+          },
+          {
+              "name": "site_slug",
+              "description": "if the article was published under a site, this contains the handle of such site",
+              "type": "string"
+          }
+        ]
+      }
+    }
+  ]
+}
